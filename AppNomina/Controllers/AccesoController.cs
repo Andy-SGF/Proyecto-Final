@@ -39,27 +39,25 @@ namespace AppNomina.Controllers
                 using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString))
                 {
                     SqlCommand cmd = new SqlCommand("spValidarUsuario", cn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("usuario", oEmpleado.usuario);
-
-                    SqlParameter paramHash = new SqlParameter("hash", SqlDbType.NVarChar, 255) { Direction = ParameterDirection.Output };
-                    SqlParameter paramId = new SqlParameter("id", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                    SqlParameter paramMensaje = new SqlParameter("mensaje", SqlDbType.VarChar, 100) { Direction = ParameterDirection.Output };
-
-                    cmd.Parameters.Add(paramHash);
-                    cmd.Parameters.Add(paramId);
-                    cmd.Parameters.Add(paramMensaje);
-
+                    cmd.Parameters.AddWithValue("clave", oEmpleado.clave);
+                    cmd.Parameters.Add("id", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cn.Open();
                     cmd.ExecuteNonQuery();
+
+                    oEmpleado.Id = Convert.ToInt32(cmd.Parameters["id"].Value);
+                    mensaje = cmd.Parameters["mensaje"].Value.ToString();
+
                     cn.Close();
 
-                    string hash = paramHash.Value?.ToString();
-                    int id = Convert.ToInt32(paramId.Value);
-                    if (id == 1 && !string.IsNullOrEmpty(hash) && BCrypt.Net.BCrypt.Verify(oEmpleado.clave,hash))
+                    if (oEmpleado.Id == 1)
                     {
-                        return RedirectToAction("Index","Home");
-                    } else if (id ==0){
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else if (oEmpleado.Id == 0)
+                    {
                         return View();
                     }
                     else
