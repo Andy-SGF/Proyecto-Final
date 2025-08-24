@@ -1,0 +1,17 @@
+@model PayrollApp.Models.Department
+@{
+    ViewData["Title"] = "Crear Departamento";
+}
+<h2>Crear Departamento</h2>
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="DeptNo"></label>
+        <input asp-for="DeptNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DeptName"></label>
+        <input asp-for="DeptName" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+<a asp-action="Index">Volver</a>
