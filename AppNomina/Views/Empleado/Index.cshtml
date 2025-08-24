@@ -1,0 +1,74 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<AppNomina.Models.Empleado>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empleados</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Empleado", "Registrar", "Acceso", null, new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm("Index", "Empleado", FormMethod.Get))
+{
+    <div class="form-inline mb-3">
+        <select name="campoFiltro" class="form-control mr-2">
+            <option value="Nombre">Nombre</option>
+            <option value="Apellido">Apellido</option>
+            <option value="CI">CI</option>
+            <option value="Usuario">Usuario</option>
+            <option value="Correo">Correo</option>
+        </select>
+        <input type="text" name="valorFiltro" class="form-control mr-2" placeholder="Buscar..." value="@Request["valorFiltro"]" />
+        <button type="submit" class="btn btn-secondary">Buscar</button>
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Usuario</th>
+            <th>CI</th>
+            <th>Correo</th>
+            <th>Departamento</th>
+            <th>Título</th>
+            <th>Salario</th>
+            <th>Hasta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.nombre</td>
+                <td>@item.apellido</td>
+                <td>@item.usuario</td>
+                <td>@item.cedula</td>
+                <td>@item.correo</td>
+                <td>@item.dept_Name</td>
+                <td>@item.title</td>
+                <td>@item.salary.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                <td>@item.salary_to_date</td>
+                <td>
+                    @Html.ActionLink("Ver", "Detalle", new { ci = item.cedula }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Editar", "Edit", new { ci = item.cedula }, new { @class = "btn btn-warning btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        campoFiltro = Request["campoFiltro"],
+        valorFiltro = Request["valorFiltro"]
+    }))
+</div>
+
