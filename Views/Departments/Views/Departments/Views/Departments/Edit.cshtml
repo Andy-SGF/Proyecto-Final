@@ -1,0 +1,14 @@
+@model PayrollApp.Models.Department
+@{
+    ViewData["Title"] = "Editar Departamento";
+}
+<h2>Editar Departamento</h2>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="DeptNo" />
+    <div class="form-group">
+        <label asp-for="DeptName"></label>
+        <input asp-for="DeptName" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+<a asp-action="Index">Volver</a>
