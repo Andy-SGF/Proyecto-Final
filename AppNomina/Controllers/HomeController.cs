@@ -8,6 +8,9 @@ namespace AppNomina.Controllers
 {
     public class HomeController : Controller
     {
+
+        //GET: Acceso
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -26,5 +29,7 @@ namespace AppNomina.Controllers
 
             return View();
         }
+
+
     }
 }
