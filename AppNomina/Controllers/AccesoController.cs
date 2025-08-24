@@ -23,7 +23,12 @@ namespace AppNomina.Controllers
 
         //GET: Acceso 
         [HttpGet]
-        public ActionResult Autenticar()
+        public ActionResult Autenticacion()
+        {
+            return View();
+        }
+
+        public ActionResult Registrar()
         {
             return View();
         }
@@ -31,9 +36,8 @@ namespace AppNomina.Controllers
         //POST
         [HttpPost]
         
-        public ActionResult Autenticar(Empleado oEmpleado)
+        public ActionResult Autenticacion(Empleado oEmpleado)
         {
-            string mensaje = "";
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString))
@@ -48,7 +52,7 @@ namespace AppNomina.Controllers
                     cmd.ExecuteNonQuery();
 
                     oEmpleado.Id = Convert.ToInt32(cmd.Parameters["id"].Value);
-                    mensaje = cmd.Parameters["mensaje"].Value.ToString();
+                    oEmpleado.mensaje = cmd.Parameters["mensaje"].Value.ToString();
 
                     cn.Close();
 
@@ -58,7 +62,7 @@ namespace AppNomina.Controllers
                     }
                     else if (oEmpleado.Id == 0)
                     {
-                        return View();
+                        return RedirectToAction("Registrar", "Acceso");
                     }
                     else
                     {
@@ -69,6 +73,54 @@ namespace AppNomina.Controllers
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e);
+                return View();
+            }
+        }
+
+        // POST
+        [HttpPost]
+        public ActionResult Registrar(Empleado oEmpleado)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["Cnn"].ConnectionString))
+                {
+                    SqlCommand comando = new SqlCommand("spRegistrarUsuario", cn);
+                    comando.Parameters.AddWithValue("cedula", oEmpleado.cedula);
+                    comando.Parameters.AddWithValue("nombre", oEmpleado.nombre);
+                    comando.Parameters.AddWithValue("apellido", oEmpleado.apellido);
+                    comando.Parameters.AddWithValue("correo", oEmpleado.correo);
+                    comando.Parameters.AddWithValue("genero", oEmpleado.genero);
+                    comando.Parameters.AddWithValue("fecha", oEmpleado.birth_date);
+                    comando.Parameters.AddWithValue("clave", oEmpleado.clave);
+                    comando.Parameters.Add("retorno", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    comando.Parameters.Add("mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+                    comando.CommandType = CommandType.StoredProcedure;
+                    cn.Open();
+                    comando.ExecuteNonQuery();
+
+                    oEmpleado.Id = Convert.ToInt32(comando.Parameters["retorno"].Value);
+                    oEmpleado.mensaje = comando.Parameters["mensaje"].Value.ToString();
+
+                    cn.Close();
+                }
+
+                if (oEmpleado.Id == 1)
+                {
+                    return RedirectToAction("Autenticacion", "Acceso");
+                }
+                else if (oEmpleado.Id == 0)
+                {
+                    return RedirectToAction("Autenticacion", "Acceso");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error" + e);
                 return View();
             }
         }

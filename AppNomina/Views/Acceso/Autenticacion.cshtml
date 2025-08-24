@@ -1,6 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Autenticar";
+    ViewBag.Title = "Autenticacion";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <body>
     <main>
         <div>
-            <form action="@Url.Action("Autenticar","Acceso")" method="post">
+            <form action="@Url.Action("Autenticacion","Acceso")" method="post">
                 <h1>Login</h1>
                 <div>
                     <p>
@@ -25,7 +26,7 @@
                 </div>
                 <div class="form-actions">
                     <input type="submit" value="Ingresar" />
-                    <a href="">Registrar</a>
+                    <a href="~/Acceso/Registrar">Registrar</a>
                 </div>
             </form>
         </div>
