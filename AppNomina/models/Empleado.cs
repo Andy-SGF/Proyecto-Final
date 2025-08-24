@@ -19,7 +19,10 @@ namespace AppNomina.Models
         public string usuario { get; set; }
         public string clave { get; set; }
         public int Id { get; set; }
-
         public string mensaje { get; set; }
+        public string dept_Name { get; set; }
+        public string title { get; set; }
+        public double salary { get; set; }
+        public string salary_to_date { get; set; }
     }
 }

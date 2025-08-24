@@ -208,3 +208,7 @@ D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\obj\Deb
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\obj\Debug\AppNomina.csproj.Up2Date
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\obj\Debug\AppNomina.dll
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\obj\Debug\AppNomina.pdb
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.Mvc.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.Mvc.xml

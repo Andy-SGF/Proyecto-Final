@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles del Empleado</h2>
+
+<p>Nombre: @Model.nombre @Model.apellido</p>
+<p>Usuario: @Model.usuario</p>
+<p>Cédula: @Model.cedula</p>
+<p>Correo: @Model.correo</p>
+<p>Departamento: @Model.dept_Name</p>
+<p>Título: @Model.title</p>
+<p>Salario: @Model.salary.ToString("C", new System.Globalization.CultureInfo("en-US"))</p>
+<p>Fecha hasta: @Model.salary_to_date</p>
+
