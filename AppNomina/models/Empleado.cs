@@ -19,5 +19,7 @@ namespace AppNomina.Models
         public string usuario { get; set; }
         public string clave { get; set; }
         public int Id { get; set; }
+
+        public string mensaje { get; set; }
     }
 }
