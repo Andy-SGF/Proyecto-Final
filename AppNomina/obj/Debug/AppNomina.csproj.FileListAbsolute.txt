@@ -212,3 +212,17 @@ D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Pag
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.Mvc.dll
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.xml
 D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\PagedList.Mvc.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Mvc.Abstractions.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.Extensions.Primitives.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.Net.Http.Headers.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\System.Text.Encodings.Web.dll
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Mvc.Abstractions.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.AspNetCore.Routing.Abstractions.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.Extensions.Primitives.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\Microsoft.Net.Http.Headers.xml
+D:\Instituto\Reutilización de software\Examen Segundo Parcial\AppNomina\bin\System.Text.Encodings.Web.xml
