@@ -217,6 +217,7 @@
     <Content Include="Views\Acceso\Registrar.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Empleado\Detalle.cshtml" />
+    <Content Include="Views\Empleado\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

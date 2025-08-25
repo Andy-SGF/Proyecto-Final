@@ -38,15 +38,14 @@ namespace AppNomina.Controllers
                         {
                             empleados.Add(new Empleado
                             {
+                                emp_no = Convert.ToInt32(reader["emp_no"]),
                                 nombre = reader["first_name"].ToString(),
                                 apellido = reader["last_name"].ToString(),
-                                usuario = reader["usuario"].ToString(),
                                 cedula = reader["ci"].ToString(),
                                 correo = reader["correo"].ToString(),
                                 dept_Name = reader["dept_name"].ToString(),
                                 title = reader["title"].ToString(),
-                                salary = Convert.ToDouble(reader["salary"]),
-                                salary_to_date = reader["to_date"].ToString(),
+                                estado = Convert.ToInt32(reader["estado"])
                             });
                         }
                     }
@@ -68,9 +67,6 @@ namespace AppNomina.Controllers
                         case "CI":
                             empleados = empleados.Where(e => e.cedula != null && e.cedula.Contains(valor)).ToList();
                             break;
-                        case "Usuario":
-                            empleados = empleados.Where(e => e.usuario != null && e.usuario.ToLower().Contains(valor)).ToList();
-                            break;
                         case "Correo":
                             empleados = empleados.Where(e => e.correo != null && e.correo.ToLower().Contains(valor)).ToList();
                             break;
@@ -88,7 +84,48 @@ namespace AppNomina.Controllers
             }
         }
 
-        // GET: Empleados/Details/5
+        // GET: Empleados/Edit/5
+        public ActionResult Editar(int id)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM VW_EmployeesView WHERE emp_no = @emp_no", cn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@emp_no", id);
+                    cn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var empleado = new Empleado
+                            {
+                                emp_no = Convert.ToInt32(reader["emp_no"]),
+                                nombre = reader["first_name"].ToString(),
+                                apellido = reader["last_name"].ToString(),
+                                cedula = reader["ci"].ToString(),
+                                birth_date = reader["birth_date"].ToString(),
+                                genero = Convert.ToChar(reader["gender"]),
+                                hire_date = reader["hire_date"].ToString(),
+                                correo = reader["correo"].ToString()
+                            };
+                            return View(empleado);
+                        }
+                    }
+                }
+                return HttpNotFound();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error al cargar los datos del empleado: " + ex.Message;
+                return View();
+            }
+        }
+
+
+
+        // GET: Empleado/Detalle/5
         public ActionResult Detalle(string ci)
         {
             if (string.IsNullOrEmpty(ci))
@@ -109,13 +146,17 @@ namespace AppNomina.Controllers
                             {
                                 nombre = reader["first_name"].ToString(),
                                 apellido = reader["last_name"].ToString(),
+                                birth_date = reader["birth_date"].ToString(),
                                 usuario = reader["usuario"].ToString(),
                                 cedula = reader["ci"].ToString(),
+                                genero = Convert.ToChar(reader["gender"]),
                                 correo = reader["correo"].ToString(),
+                                hire_date = reader["hire_date"].ToString(),
                                 dept_Name = reader["dept_name"].ToString(),
                                 title = reader["title"].ToString(),
                                 salary = Convert.ToDouble(reader["salary"]),
                                 salary_to_date = reader["to_date"].ToString(),
+                                estado = Convert.ToInt32(reader["estado"])
                             };
                             return View(empleado);
                         }
@@ -130,37 +171,47 @@ namespace AppNomina.Controllers
             }
         }
 
-        // GET: Empleados/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Empleados/Create
+        // POST: Empleados/Edit/5
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Empleado empleado)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                try
+                {
+                    using (SqlConnection cn = new SqlConnection(connectionString))
+                    using (SqlCommand cmd = new SqlCommand("sp_ActualizarEmpleado", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@emp_no", empleado.emp_no);
+                        cmd.Parameters.AddWithValue("@ci", empleado.cedula);
+                        cmd.Parameters.AddWithValue("@birth_date", empleado.birth_date);
+                        cmd.Parameters.AddWithValue("@nombre", empleado.nombre);
+                        cmd.Parameters.AddWithValue("@apellido", empleado.apellido);
+                        cmd.Parameters.AddWithValue("@genero", empleado.genero);
+                        cmd.Parameters.AddWithValue("@hire_date", empleado.hire_date);
+                        cmd.Parameters.AddWithValue("@correo", empleado.correo);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                        cn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
 
-        // GET: Empleados/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
+                    TempData["Mensaje"] = "Empleado actualizado correctamente.";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["Error"] = "Error al actualizar el empleado: " + ex.Message;
+                    return View(empleado);
+                }
+            }
+            return View(empleado);
         }
 
         // POST: Empleados/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int Id, FormCollection collection)
         {
             try
             {
@@ -194,6 +245,32 @@ namespace AppNomina.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult CambiarEstado(int id, int nuevoEstado)
+        {
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand("sp_CambiarEstadoEmpleado", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@emp_no", id);
+                    cmd.Parameters.AddWithValue("@nuevoEstado", nuevoEstado);
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                TempData["Mensaje"] = "Estado actualizado correctamente.";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al actualizar estado: " + ex.Message;
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
