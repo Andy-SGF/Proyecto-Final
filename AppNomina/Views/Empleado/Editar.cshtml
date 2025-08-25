@@ -1,0 +1,66 @@
+﻿@model AppNomina.Models.Empleado
+
+@{
+    ViewBag.Title = "Editar Empleado";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Editar", "Empleado", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.emp_no)
+        @Html.HiddenFor(model => model.emp_no)  <!-- Solo mostrar, no editable -->
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombre)
+        @Html.EditorFor(model => model.nombre)
+        @Html.ValidationMessageFor(model => model.nombre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.apellido)
+        @Html.EditorFor(model => model.apellido)
+        @Html.ValidationMessageFor(model => model.apellido)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cedula)
+        @Html.EditorFor(model => model.cedula)
+        @Html.ValidationMessageFor(model => model.cedula)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.birth_date)
+        @Html.EditorFor(model => model.birth_date)
+        @Html.ValidationMessageFor(model => model.birth_date)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.genero)
+        <div class="form-check">
+            @Html.RadioButtonFor(model => model.genero, "H", new { @class = "form-check-input" }) Hombre
+            @Html.RadioButtonFor(model => model.genero, "F", new { @class = "form-check-input" }) Mujer
+        </div>
+        @Html.ValidationMessageFor(model => model.genero)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hire_date)
+        @Html.EditorFor(model => model.hire_date)
+        @Html.ValidationMessageFor(model => model.hire_date)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.correo)
+        @Html.EditorFor(model => model.correo)
+        @Html.ValidationMessageFor(model => model.correo)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+}
+
+@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
