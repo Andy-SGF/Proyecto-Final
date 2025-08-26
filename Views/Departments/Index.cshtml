@@ -1,27 +1,29 @@
-@model IEnumerable<PayrollApp.Models.Department>
+@model IEnumerable<AppNomina.Models.Department>
 @{
-    ViewData["Title"] = "Departamentos";
+    ViewBag.Title = "Departamentos";
 }
 <h2>Departamentos</h2>
 <p>
-    <a asp-action="Create" class="btn btn-primary">Nuevo Departamento</a>
+    @Html.ActionLink("Nuevo Departamento", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table class="table table-bordered">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>Código</th>
             <th>Nombre</th>
-            <th></th>
+            <th style="width:180px;"></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
         <tr>
             <td>@item.DeptNo</td>
             <td>@item.DeptName</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DeptNo">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.DeptNo">Eliminar</a>
+                @Html.ActionLink("Detalles", "Details", new { id = item.DeptNo }, new { @class = "btn btn-secondary btn-sm" })
+                @Html.ActionLink("Editar", "Edit", new { id = item.DeptNo }, new { @class = "btn btn-warning btn-sm" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.DeptNo }, new { @class = "btn btn-danger btn-sm" })
             </td>
         </tr>
 }
