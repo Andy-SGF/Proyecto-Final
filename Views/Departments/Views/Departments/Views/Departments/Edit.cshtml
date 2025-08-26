@@ -1,14 +1,20 @@
-@model PayrollApp.Models.Department
+@model AppNomina.Models.Department
 @{
-    ViewData["Title"] = "Editar Departamento";
+    ViewBag.Title = "Editar Departamento";
 }
 <h2>Editar Departamento</h2>
-<form asp-action="Edit">
-    <input type="hidden" asp-for="DeptNo" />
-    <div class="form-group">
-        <label asp-for="DeptName"></label>
-        <input asp-for="DeptName" class="form-control" />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.DeptNo)
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeptName)
+            @Html.TextBoxFor(model => model.DeptName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DeptName)
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-link" })
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-<a asp-action="Index">Volver</a>
+}
