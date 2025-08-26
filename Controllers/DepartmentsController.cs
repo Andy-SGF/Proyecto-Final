@@ -1,29 +1,40 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PayrollApp.Data;
-using PayrollApp.Models;
-using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using AppNomina.Models;
 
-namespace PayrollApp.Controllers
+namespace AppNomina.Controllers
 {
-    [Authorize(Roles="Administrador,RRHH")]
+    [Authorize]
     public class DepartmentsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public DepartmentsController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await _context.Departments.ToListAsync());
+            var list = db.Departments.ToList();
+            return View(list);
+        }
+
+        // GET: Departments/Details/5
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var department = db.Departments.Find(id);
+            if (department == null)
+                return HttpNotFound();
+
+            return View(department);
         }
 
         // GET: Departments/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
             return View();
         }
@@ -31,64 +42,76 @@ namespace PayrollApp.Controllers
         // POST: Departments/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DeptNo,DeptName")] Department department)
+        public ActionResult Create([Bind(Include = "DeptNo,DeptName")] Department department)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(department);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                db.Departments.Add(department);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View(department);
         }
 
         // GET: Departments/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
-            if (id == null) return NotFound();
-            var dept = await _context.Departments.FindAsync(id);
-            if (dept == null) return NotFound();
-            return View(dept);
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var department = db.Departments.Find(id);
+            if (department == null)
+                return HttpNotFound();
+
+            return View(department);
         }
 
         // POST: Departments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("DeptNo,DeptName")] Department department)
+        public ActionResult Edit([Bind(Include = "DeptNo,DeptName")] Department department)
         {
-            if (id != department.DeptNo) return NotFound();
-
             if (ModelState.IsValid)
             {
-                _context.Update(department);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                db.Entry(department).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View(department);
         }
 
         // GET: Departments/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
-            if (id == null) return NotFound();
-            var dept = await _context.Departments.FirstOrDefaultAsync(m => m.DeptNo == id);
-            if (dept == null) return NotFound();
-            return View(dept);
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var department = db.Departments.Find(id);
+            if (department == null)
+                return HttpNotFound();
+
+            return View(department);
         }
 
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            var dept = await _context.Departments.FindAsync(id);
-            if (dept != null)
+            var department = db.Departments.Find(id);
+            if (department != null)
             {
-                _context.Departments.Remove(dept);
-                await _context.SaveChangesAsync();
+                db.Departments.Remove(department);
+                db.SaveChanges();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
-
