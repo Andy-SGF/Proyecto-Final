@@ -1,0 +1,21 @@
+@{
+    Layout = null;
+    var title = ViewBag.Title ?? "Aplicación Nómina";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@title - Aplicación Nómina</title>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body>
+    <header>
+        <h2>Aplicación Nómina</h2>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
