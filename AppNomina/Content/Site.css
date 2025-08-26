@@ -1,20 +1,44 @@
-﻿/* Set padding to keep content from hitting the edges */
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    background-color: slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+header {
+    width: 100%;
+    background: linear-gradient(to top right, #34495e, #000000);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #e0e0e0;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+header h2 {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
 }
+
+main.container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1000px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 8px; border: 1px solid #ddd; }
+.btn { display: inline-block; padding: 6px 10px; border-radius: 6px; text-decoration: none; }
+.btn-primary { background: #2980b9; color: #fff; }
+.btn-warning { background: #f39c12; color: #fff; }
+.btn-danger { background: #c0392b; color: #fff; }
+.btn-secondary { background: #7f8c8d; color: #fff; }
+.btn-link { background: transparent; color: #2980b9; }
