@@ -1,0 +1,111 @@
+﻿body {
+    background-color: slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(to top right, #34495e, #000000);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #e0e0e0;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+    header h2 {
+        color: white;
+        font-size: 2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+.login-page {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .login-page form {
+        background-color: black;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        width: 300px;
+    }
+
+    .login-page .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .login-page input[type="text"],
+    .login-page input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .login-page input[type="submit"] {
+        background-color: #3b82f6;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+hr.divider {
+    margin: 20px 0;
+    padding: 10px;
+    border: none;
+    border-top: 2px solid white;
+}
+
+.login-page a {
+    margin-left: 15px;
+}
+
+    .login-page a:hover {
+        text-decoration: underline;
+    }
+
+.login-page input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+
+@media (max-width: 600px) {
+    .login-page {
+        padding: 10px;
+    }
+
+    form {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+        .form-actions input[type="submit"],
+        .form-actions a {
+            width: 100%;
+            text-align: center;
+        }
+}

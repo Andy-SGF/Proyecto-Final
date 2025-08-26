@@ -1,23 +1,33 @@
 ﻿
 @{
     ViewBag.Title = "Autenticacion";
-    Layout = null;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/Autenticacion.css" />
     <title></title>
 </head>
 <body>
-    <main>
+
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+
+    <main class="login-page">
         <div>
             <form action="@Url.Action("Autenticacion","Acceso")" method="post">
                 <h1>Login</h1>
+                <hr class="divider"/>
                 <div>
                     <p>
                         <label>Usuario</label>
-                        <input type="text" name="usuario" id="usuario" placeholder="usuario"/>
+                        <input type="text" name="usuario" id="usuario" placeholder="usuario" />
                     </p>
                     <p>
                         <label>Clave</label>
@@ -26,7 +36,7 @@
                 </div>
                 <div class="form-actions">
                     <input type="submit" value="Ingresar" />
-                    <a href="~/Acceso/Registrar">Registrar</a>
+                    @*<a href="~/Acceso/Registrar">Registrar</a>*@
                 </div>
             </form>
         </div>

@@ -1,0 +1,115 @@
+﻿body {
+    background-color: slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(to top right, #34495e, #000000);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #e0e0e0;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+    header h2 {
+        color: white;
+        font-size: 2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+    main h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: black;
+    }
+
+.table-container {
+    max-width: 700px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.employee-table {
+    width: 100%;
+    table-layout: auto; 
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+}
+
+    .employee-table th,
+    .employee-table td {
+        text-align: left;
+        padding: 8px 12px;
+        border-bottom: 1px solid #ddd;
+        white-space: nowrap;
+    }
+
+    .employee-table th {
+        background-color: maroon;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: 35%;
+    }
+
+    .employee-table td {
+        background-color:burlywood;
+        color: #2c3e50;
+    }
+
+    .employee-table tr:hover td {
+        background-color: #eafaf7;
+        transition: background-color 0.3s ease;
+    }
+
+.button-separado {
+    margin-top: 20px; 
+}
+
+@media (max-width: 600px) {
+    .employee-table th,
+    .employee-table td {
+        display: block;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .employee-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .employee-table th {
+        padding-top: 10px;
+    }
+
+    .employee-table td {
+        padding-bottom: 10px;
+    }
+
+    .table-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+}

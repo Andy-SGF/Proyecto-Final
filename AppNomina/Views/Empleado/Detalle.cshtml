@@ -3,18 +3,81 @@
     ViewBag.Title = "Detalle";
 }
 
-<h2>Detalles del Empleado</h2>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/DetalleEmpleado.css" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+    
+    <main>
+        <h2>Detalles del Empleado</h2>
 
-<p>Nombre: @Model.nombre @Model.apellido</p>
-<p>Fecha de Nacimiento: @Model.birth_date</p>
-<p>Género: @Model.genero</p>
-<p>Usuario: @Model.usuario</p>
-<p>Cédula: @Model.cedula</p>
-<p>Correo: @Model.correo</p>
-<p>Departamento: @Model.dept_Name</p>
-<p>Título: @Model.title</p>
-<p>Fecha de ingreso: @Model.hire_date</p>
-<p>Salario: @Model.salary.ToString("C", new System.Globalization.CultureInfo("en-US"))</p>
-<p>Fecha vencimiento salario: @Model.salary_to_date</p>
-<p>Estado: @(Model.estado == 1 ? "Activo":"No Activo")</p>
+        <div class="table-container">
+            <table class="employee-table">
+                <tr>
+                    <th>Nombre</th>
+                    <td>@Model.nombre @Model.apellido</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Nacimiento</th>
+                    <td>@Model.birth_date</td>
+                </tr>
+                <tr>
+                    <th>Género</th>
+                    <td>@Model.genero</td>
+                </tr>
+                <tr>
+                    <th>Usuario</th>
+                    <td>@Model.usuario</td>
+                </tr>
+                <tr>
+                    <th>Cédula</th>
+                    <td>@Model.cedula</td>
+                </tr>
+                <tr>
+                    <th>Correo</th>
+                    <td>@Model.correo</td>
+                </tr>
+                <tr>
+                    <th>Departamento</th>
+                    <td>@Model.dept_Name</td>
+                </tr>
+                <tr>
+                    <th>Título</th>
+                    <td>@Model.title</td>
+                </tr>
+                <tr>
+                    <th>Fecha de ingreso</th>
+                    <td>@Model.hire_date</td>
+                </tr>
+                <tr>
+                    <th>Salario</th>
+                    <td>@Model.salary.ToString("C", new System.Globalization.CultureInfo("en-US"))</td>
+                </tr>
+                <tr>
+                    <th>Fecha vencimiento salario</th>
+                    <td>@Model.salary_to_date</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>@(Model.estado == 1 ? "Activo" : "No Activo")</td>
+                </tr>
+            </table>
+            <p>
+                @Html.ActionLink("Volver", "Index", "Empleado", null, new { @class = "btn btn-secondary ml-2 button-separado" })
+            </p>
+        </div>
+    </main>
+</body>
+</html>
+
+
 

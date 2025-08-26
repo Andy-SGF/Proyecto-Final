@@ -4,63 +4,86 @@
     ViewBag.Title = "Editar Empleado";
 }
 
-<h2>@ViewBag.Title</h2>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/EditarEmpleado.css" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+    <main>
+        <h2>Editar Empleado</h2>
 
-@using (Html.BeginForm("Editar", "Empleado", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("Editar", "Empleado", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.emp_no)
-        @Html.HiddenFor(model => model.emp_no)  <!-- Solo mostrar, no editable -->
-    </div>
+            <div class="form-group">
+                <label>Nombre:</label>
+                @Html.EditorFor(model => model.nombre)
+                @Html.ValidationMessageFor(model => model.nombre)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.nombre)
-        @Html.EditorFor(model => model.nombre)
-        @Html.ValidationMessageFor(model => model.nombre)
-    </div>
+            <div class="form-group">
+                <label>Apellido:</label>
+                @Html.EditorFor(model => model.apellido)
+                @Html.ValidationMessageFor(model => model.apellido)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.apellido)
-        @Html.EditorFor(model => model.apellido)
-        @Html.ValidationMessageFor(model => model.apellido)
-    </div>
+            <div class="form-group">
+                <label>Cédula:</label>
+                @Html.EditorFor(model => model.cedula)
+                @Html.ValidationMessageFor(model => model.cedula)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.cedula)
-        @Html.EditorFor(model => model.cedula)
-        @Html.ValidationMessageFor(model => model.cedula)
-    </div>
+            <div class="form-group">
+                <label>Fecha de Nacimiento:</label>
+                @Html.EditorFor(model => model.birth_date)
+                @Html.ValidationMessageFor(model => model.birth_date)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.birth_date)
-        @Html.EditorFor(model => model.birth_date)
-        @Html.ValidationMessageFor(model => model.birth_date)
-    </div>
+            <div class="form-group">
+                <label>Genero:</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(model => model.genero, "H", new { @class = "form-check-input" }) Hombre
+                    </label>
+                </div>
+                <div>
+                    <label class="form-check-label">
+                        @Html.RadioButtonFor(model => model.genero, "F", new { @class = "form-check-input" }) Mujer
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(model => model.genero)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.genero)
-        <div class="form-check">
-            @Html.RadioButtonFor(model => model.genero, "H", new { @class = "form-check-input" }) Hombre
-            @Html.RadioButtonFor(model => model.genero, "F", new { @class = "form-check-input" }) Mujer
-        </div>
-        @Html.ValidationMessageFor(model => model.genero)
-    </div>
+            <div class="form-group">
+                <label>Fecha de contratación:</label>
+                @Html.EditorFor(model => model.hire_date)
+                @Html.ValidationMessageFor(model => model.hire_date)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.hire_date)
-        @Html.EditorFor(model => model.hire_date)
-        @Html.ValidationMessageFor(model => model.hire_date)
-    </div>
+            <div class="form-group">
+                <label>Correo:</label>
+                @Html.EditorFor(model => model.correo)
+                @Html.ValidationMessageFor(model => model.correo)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.correo)
-        @Html.EditorFor(model => model.correo)
-        @Html.ValidationMessageFor(model => model.correo)
-    </div>
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
 
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-}
+       
 
-@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+    </main>
+</body>
+</html>
+

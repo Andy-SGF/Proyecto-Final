@@ -1,0 +1,145 @@
+﻿body {
+    background-color: slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(to top right, #34495e, #000000);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #e0e0e0;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+    header h2 {
+        color: white;
+        font-size: 2rem;
+        margin: 0;
+        font-weight: 700;
+    }
+
+form {
+    background-color: #fff;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.divider {
+    margin: 10px 0 30px;
+    border: none;
+    height: 1px;
+    background: #ddd;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .form-group label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #444;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="datetime"] {
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .form-group p {
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .form-group label input[type="radio"] {
+        margin-right: 6px;
+    }
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+    .form-actions input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+        .form-actions input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+.login-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: right;
+}
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .form-actions input[type="submit"],
+        .form-actions .login-link {
+            width: 100%;
+            text-align: center;
+        }
+}
