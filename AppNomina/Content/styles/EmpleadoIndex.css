@@ -1,0 +1,202 @@
+﻿body {
+    background-color: slategrey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(to top right, #34495e, #000000);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 4px solid #e0e0e0;
+    margin: 0;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+header h2 {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+main {
+    padding: 20px;
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color:black;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-inline {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-inline .form-control {
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.btn {
+    border-radius: 30px;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-secondary {
+    background-color:black;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-third {
+    background-color:orange;
+    border-color:orange;
+}
+
+.btn-third:hover {
+    background-color: darkorange;
+    border-color: darkorange;
+}
+
+
+.btn-warning {
+    background-color:firebrick;
+    border-color: #ffc107;
+}
+
+.btn-warning:hover {
+    background-color:darkred;
+    border-color: darkred;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.tabla-contenedor {
+    display: flex;
+    justify-content: center; /* centra la tabla horizontalmente */
+    margin-bottom: 20px;
+}
+
+    .tabla-contenedor .table {
+        width: 80%; /* la tabla mantiene su ancho */
+    }
+
+.table {
+    width: 80% !important; 
+    margin: 0 auto !important;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .table th, .table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .table td{
+        white-space: nowrap;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+.text-center {
+    text-align: center;
+}
+
+.pagination li a {
+    color: black; 
+}
+
+.pagination li span {
+    color: black; 
+}
+
+.pagination .active a,
+.pagination .active a:hover,
+.pagination .active span {
+    border-color: black;
+    color: black; 
+}
+
+
+
+@media (max-width: 768px) {
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .form-inline .form-control {
+            margin-bottom: 10px;
+        }
+
+    .table th, .table td {
+        padding: 8px;
+    }
+
+    .table {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+}
