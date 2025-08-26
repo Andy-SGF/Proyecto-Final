@@ -5,88 +5,117 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Empleados</h2>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/EmpleadoIndex.css" />
+    <title></title>
+</head>
+<body>
 
-<p>
-    @Html.ActionLink("Crear Nuevo Empleado", "Registrar", "Acceso", null, new { @class = "btn btn-primary" })
-</p>
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+    
+    <main>
+        <h4>Lista de Empleados</h4>
+        
+        <div class="btn-container">
+            <p>
+                @Html.ActionLink("Crear Nuevo Empleado", "Registrar", "Acceso", null, new { @class = "btn btn-primary" })
+            </p>
 
-@using (Html.BeginForm("Index", "Empleado", FormMethod.Get))
-{
-    <div class="form-inline mb-3">
-        <select name="campoFiltro" class="form-control mr-2">
-            <option value="Nombre">Nombre</option>
-            <option value="Apellido">Apellido</option>
-            <option value="CI">CI</option>
-            <option value="Correo">Correo</option>
-        </select>
-        <input type="text" name="valorFiltro" class="form-control mr-2" placeholder="Buscar..." value="@Request["valorFiltro"]" />
-        <button type="submit" class="btn btn-secondary">Buscar</button>
-    </div>
-}
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Código</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Cédula</th>
-            <th>Correo</th>
-            <th>Departamento</th>
-            <th>Título</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+            <p>
+                @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "btn btn-secondary ml-2" })
+            </p>
+        </div>
+        
+        @using (Html.BeginForm("Index", "Empleado", FormMethod.Get))
         {
-            <tr>
-                <td>@item.emp_no</td>
-                <td>@item.nombre</td>
-                <td>@item.apellido</td>
-                <td>@item.cedula</td>
-                <td>@item.correo</td>
-                <td>@item.dept_Name</td>
-                <td>@item.title</td>
-                <td>@(item.estado == 1 ? "Activo":"Inactivo")</td>
-                <td>
-                    @if (@item.estado == 1)
-                    {
-                        <!-- Botón para desactivar -->
-                        <form action="@Url.Action("CambiarEstado","Empleado")" method="post" style="display:inline">
-                            <input type="hidden" name="id" value="@item.emp_no" />
-                            <input type="hidden" name="nuevoEstado" value="0" />
-                            <button type="submit" class="btn btn-warning btn-sm">Desactivar</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <!-- Botón para activar -->
-                        <form action="@Url.Action("CambiarEstado","Empleado")" method="post" style="display:inline">
-                            <input type="hidden" name="id" value="@item.emp_no" />
-                            <input type="hidden" name="nuevoEstado" value="1" />
-                            <button type="submit" class="btn btn-success btn-sm">Activar</button>
-                        </form>
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Ver", "Detalle", new { ci = item.cedula }, new { @class = "btn btn-info btn-sm" }) |
-               
-                    @Html.ActionLink("Editar", "Editar", new { id = item.emp_no }, new { @class = "btn btn-warning btn-sm" })
-                </td>
-            </tr>
+            <div class="form-inline mb-3">
+                <select name="campoFiltro" class="form-control mr-2">
+                    <option value="Nombre">Nombre</option>
+                    <option value="Apellido">Apellido</option>
+                    <option value="CI">CI</option>
+                    <option value="Correo">Correo</option>
+                </select>
+                <input type="text" name="valorFiltro" class="form-control mr-2" placeholder="Buscar..." value="@Request["valorFiltro"]" />
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+            </div>
         }
-    </tbody>
-</table>
 
-<div class="text-center">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new
-    {
-        page,
-        campoFiltro = Request["campoFiltro"],
-        valorFiltro = Request["valorFiltro"]
-    }))
-</div>
+    <div class="tabla-contenedor">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Cédula</th>
+                    <th>Correo</th>
+                    <th>Departamento</th>
+                    <th>Título</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.emp_no</td>
+                        <td>@item.nombre</td>
+                        <td>@item.apellido</td>
+                        <td>@item.cedula</td>
+                        <td>@item.correo</td>
+                        <td>@item.dept_Name</td>
+                        <td>@item.title</td>
+                        <td>@(item.estado == 1 ? "Activo":"Inactivo")</td>
+                        <td>
+                            @Html.ActionLink("Ver", "Detalle", new { ci = item.cedula }, new { @class = "btn btn-info btn-sm" }) |
+
+                            @Html.ActionLink("Editar", "Editar", new { id = item.emp_no }, new { @class = "btn btn-warning btn-sm" })
+
+                            @if (@item.estado == 1)
+                            {
+                                <!-- Botón para desactivar -->
+                                <form action="@Url.Action("CambiarEstado","Empleado")" method="post" style="display:inline">
+                                    <input type="hidden" name="id" value="@item.emp_no" />
+                                    <input type="hidden" name="nuevoEstado" value="0" />
+                                    <button type="submit" class="btn btn-third btn-sm">Desactivar</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <!-- Botón para activar -->
+                                <form action="@Url.Action("CambiarEstado","Empleado")" method="post" style="display:inline">
+                                    <input type="hidden" name="id" value="@item.emp_no" />
+                                    <input type="hidden" name="nuevoEstado" value="1" />
+                                    <button type="submit" class="btn btn-success btn-sm">Activar</button>
+                                </form>
+                            }
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+        <div class="text-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new
+            {
+                page,
+                campoFiltro = Request["campoFiltro"],
+                valorFiltro = Request["valorFiltro"]
+            }))
+        </div>
+    </main>
+    
+</body>
+</html>
+
 
