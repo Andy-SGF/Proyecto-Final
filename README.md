@@ -1,11 +1,11 @@
-# 📌 AppNomina
+# AppNomina
 
 Sistema de Gestión de Nómina desarrollado en **ASP.NET MVC 5 + Entity Framework 6**.  
 El proyecto se conecta a la base de datos **EmpleadosReutilizacion** en SQL Server.
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - ASP.NET MVC 5
 - Entity Framework 6 (Database First/Code First con DataAnnotations)
@@ -14,7 +14,7 @@ El proyecto se conecta a la base de datos **EmpleadosReutilizacion** en SQL Serv
 
 ---
 
-## 🗄️ Base de datos
+## Base de datos
 
 El proyecto trabaja con la base de datos **EmpleadosReutilizacion** que contiene las siguientes tablas:
 
@@ -27,11 +27,11 @@ El proyecto trabaja con la base de datos **EmpleadosReutilizacion** que contiene
 - `users`
 - `Log_AuditoriaSalarios`
 
-👉 El script completo de creación de la base se encuentra en `Scripts/EmpleadosReutilizacion.sql`.
+ El script completo de creación de la base se encuentra en `Scripts/EmpleadosReutilizacion.sql`.
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 AppNomina/
@@ -59,7 +59,7 @@ AppNomina/
 
 ---
 
-## 🚀 Instalación y configuración
+## Instalación y configuración
 
 1. Clona el repositorio:
    ```bash
@@ -80,7 +80,7 @@ AppNomina/
    </connectionStrings>
    ```
 
-   > ⚠️ Ajusta `Data Source=.;` si usas otra instancia de SQL Server (`.\SQLEXPRESS`, `localhost,1433`, etc).
+   >  Ajusta `Data Source=.;` si usas otra instancia de SQL Server (`.\SQLEXPRESS`, `localhost,1433`, etc).
 
 4. Ejecuta el proyecto desde Visual Studio:
    ```
@@ -89,16 +89,16 @@ AppNomina/
 
 ---
 
-## ✨ Funcionalidades actuales
+##  Funcionalidades actuales
 
-### 🔹 Departamentos
+###  Departamentos
 - Listar todos los departamentos
 - Crear un nuevo departamento
 - Editar información
 - Eliminar departamento
 - Ver detalles
 
-### 🔹 Empleados
+### Empleados
 - Listar todos los empleados
 - Crear nuevo empleado con datos personales
 - Editar información existente
@@ -106,12 +106,12 @@ AppNomina/
 - Ver detalles completos
 - Campos soportados: **CI, Nombre, Apellido, Género, Fecha de nacimiento, Fecha de contratación, Correo, Estado**
 
-### 🔹 Login de usuarios
+### Login de usuarios
 - Basado en tabla `users` (en desarrollo)
 
 ---
 
-## 📌 Próximos pasos
+##  Próximos pasos
 
 - Implementar CRUD completo para **Salarios** y **Títulos**.
 - Agregar seguridad con **ASP.NET Identity**.
@@ -120,7 +120,7 @@ AppNomina/
 
 ---
 
-## 👨‍💻 Autores
+## Autores
 
 - Mateo Escudero  
 - Andy Guallichico
