@@ -1,0 +1,19 @@
+﻿@model AppNomina.Models.Department
+@{
+    ViewBag.Title = "Eliminar Departamento";
+}
+<h2>Eliminar</h2>
+<h4>¿Seguro que deseas eliminar este departamento?</h4>
+<dl class="dl-horizontal">
+    <dt>Código</dt>
+    <dd>@Model.DeptNo</dd>
+    <dt>Nombre</dt>
+    <dd>@Model.DeptName</dd>
+</dl>
+@using (Html.BeginForm("Delete", "Departments", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.DeptNo)
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-link" })
+}
