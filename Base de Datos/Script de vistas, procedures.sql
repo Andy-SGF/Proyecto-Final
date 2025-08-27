@@ -12,7 +12,7 @@ join titles t on e.emp_no = t.emp_no
 
 
 
---Procedure para Registrar empleados y creacion de usuario autom·tica 
+--Procedure para Registrar empleados y creacion de usuario autom√°tica 
 
 CREATE or ALTER Procedure [dbo].[spRegistrarUsuario](
 	-- Parametros
@@ -45,7 +45,7 @@ BEGIN
 		INSERT INTO users(emp_no,usuario,clave) Values (@id,@usuario,@clave)
 
 		set @retorno=1
-		set @mensaje='El usuario se ha registrado con Èxito'
+		set @mensaje='El usuario se ha registrado con √©xito'
 		Select @retorno,@mensaje
 	END
 	ELSE
@@ -121,15 +121,57 @@ BEGIN
 END
 
 --Para departamentos
--- Crear vista
-CREATE OR REPLACE VIEW vista_departaments AS
-SELECT id_departament, name_departament, location_departament
-FROM departaments;
+CREATE VIEW dbo.vw_Departments
+AS
+SELECT dept_no AS DeptNo, dept_name AS DeptName
+FROM dbo.departments;
+GO
 
--- Crear stored procedure
-DELIMITER //
-CREATE PROCEDURE sp_get_departament_by_id(IN dept_id INT)
+
+CREATE PROCEDURE dbo.spGetAllDepartments
+AS
 BEGIN
-    SELECT * FROM departaments WHERE id_departament = dept_id;
-END //
-DELIMITER ;
+    SELECT dept_no AS DeptNo, dept_name AS DeptName
+    FROM dbo.vw_Departments;
+END
+GO
+
+
+CREATE PROCEDURE dbo.spGetDepartmentById
+    @DeptNo INT
+AS
+BEGIN
+    SELECT dept_no AS DeptNo, dept_name AS DeptName
+    FROM dbo.vw_Departments
+    WHERE dept_no = @DeptNo;
+END
+GO
+
+CREATE PROCEDURE dbo.spCreateDepartment
+    @DeptName VARCHAR(50)
+AS
+BEGIN
+    INSERT INTO dbo.departments (dept_name)
+    VALUES (@DeptName);
+END
+GO
+
+CREATE PROCEDURE dbo.spUpdateDepartment
+    @DeptNo INT,
+    @DeptName VARCHAR(50)
+AS
+BEGIN
+    UPDATE dbo.departments
+    SET dept_name = @DeptName
+    WHERE dept_no = @DeptNo;
+END
+GO
+
+CREATE PROCEDURE dbo.spDeleteDepartment
+    @DeptNo INT
+AS
+BEGIN
+    DELETE FROM dbo.departments
+    WHERE dept_no = @DeptNo;
+END
+GO
