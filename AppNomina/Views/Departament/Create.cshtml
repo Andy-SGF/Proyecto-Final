@@ -1,0 +1,45 @@
+﻿@model AppNomina.Models.Department
+
+@{
+    ViewBag.Title = "Crear Departamento";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/DetalleEmpleado.css" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+    <main>
+        <h2>Crear Departamento</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeptName)
+                @Html.TextBoxFor(model => model.DeptName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DeptName)
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear</button>
+        }
+
+        <p>
+            @Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-default" })
+        </p>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </main>
+</body>
+</html>
+
