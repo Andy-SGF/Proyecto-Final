@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - TuApp</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/styles/DetalleEmpleado.css" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <h2>Aplicación Nomina</h2>
+    </header>
+    <main>
+        <h2>Lista de Departamentos</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre del Departamento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var department in Model)
+                {
+                    <tr>
+                        <td>@department.DeptName</td>
+                        <td>
+                            @Html.ActionLink("Detalles", "Details", new { id = department.DeptNo }) |
+                            @Html.ActionLink("Editar", "Edit", new { id = department.DeptNo }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = department.DeptNo })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("Create")" class="btn btn-primary">Crear Nuevo Departamento</a>
+
+    </main>
+</body>
+</html>
+

@@ -180,7 +180,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccesoController.cs" />
-    <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\DepartamentController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,11 +255,11 @@
     <Content Include="Views\Empleado\Index.cshtml" />
     <Content Include="Views\Empleado\Detalle.cshtml" />
     <Content Include="Views\Empleado\Editar.cshtml" />
-    <Content Include="Views\Departamento\Index.cshtml" />
-    <Content Include="Views\Departamento\Create.cshtml" />
-    <Content Include="Views\Departamento\Edit.cshtml" />
-    <Content Include="Views\Departamento\Details.cshtml" />
-    <Content Include="Views\Departamento\Delete.cshtml" />
+    <Content Include="Views\Departament\Index.cshtml" />
+    <Content Include="Views\Departament\Details.cshtml" />
+    <Content Include="Views\Departament\Create.cshtml" />
+    <Content Include="Views\Departament\Edit.cshtml" />
+    <Content Include="Views\Departament\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
